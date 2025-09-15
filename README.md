@@ -1,11 +1,10 @@
-# Mi RESTful de Tareas con Flask
+# Mi RESTful de Tareas con Frontend (Full-Stack)
 
-Este es un proyecto de API RESTful desarrollado con Flask y Flask-RESTful en Python.
-Permite a otras aplicaciones interactuar con un gestor de tareas a traves de solicitudes HTTP y respuestas JSON.
+Este proyecto es una aplicacion Full-Stack que consiste en una API RESTful (Flask y Flask-RESTful) y un frontend interactivo (HTML, CSS, JAVASCRIPT) que consume esta API para gestiar tareas.
 
 ## Caracteristicas
-- Crear, leer, actualizar y eliminar tareas (CRUD).
-- Respuestas en formato JSON.
+- **Backend (API):** Crear, leer, actualizar y eliminar tareas (CRUD) a traves de endpoints RESTful con respuestas JSON.
+- **Frontend (Web):** Interfaz de usuario para visualizar, anadir, marcar como completadas y eliminar tareas, comunicandose con la API.
 
 ## Endpoints de la API
 - `GET /tasks`: Obtener todas las tareas.
@@ -15,10 +14,8 @@ Permite a otras aplicaciones interactuar con un gestor de tareas a traves de sol
 - `DELETE /tasks/<int:task_id>`: Eliminar una tarea.
 
 ## Tecnologias
-- Python 3.x
-- Flask
-- Flask-RESTful
-- SQLite (Base de datos)
+- **Backend:** Python 3.x, Flask, Flask-RESTful, SQLite (Base de datos)
+- **Frontend:** HTML, CSS, Javascript (Fetch API)
 
 ## Como usar
 

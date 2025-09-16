@@ -26,5 +26,7 @@ Este proyecto es una aplicacion Full-Stack que consiste en una API RESTful (Flas
 6. Acceder al frontend en el navegador (`http://127.0.0.1:5000`).
 7. Puedes probar con postman o curl.
 
+<img src="assets/example_tarea.gif" alt="example" width="500">
+
 ## Autor
 Lifimastar

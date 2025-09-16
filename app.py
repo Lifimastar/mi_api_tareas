@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from flask_restful import Resource, Api
 from database import get_db_connection, init_db
 import json
@@ -9,6 +9,11 @@ api = Api(app)
 with app.app_context():
     init_db()
 
+@app.route('/')
+def serve_frontend():
+    """Sirve el archivo HTML principal de la aplicacion frontend."""
+    return render_template('index.html')
+
 # --- Clase de Recurso para una sola tarea (GET, PUT, DELETE) ---
 class Task(Resource):
     def get(self, task_id):
@@ -16,7 +21,6 @@ class Task(Resource):
         conn = get_db_connection()
         task = conn.execute("select * from tasks where id = ?", (task_id,)).fetchone()
         conn.close()
-    
         if task:
             return dict(task), 200
         return {"message": "Tarea no encontrada"}, 404
@@ -35,13 +39,10 @@ class Task(Resource):
         if not data:
             conn.close()
             return {'message': 'No se proporcionaron datos JSON validos'}, 400
-        
         title = data.get('title', task['title'])
         description = data.get('description', task['description'])
         status = data.get('status', task['status'])
-
         conn.execute("update tasks set title = ?, description = ?, status = ? where id = ?", (title, description, status, task_id))
-
         conn.commit()
         conn.close()
 
@@ -98,8 +99,8 @@ class TaskList(Resource):
         return dict(new_task), 201
     
 # --- Definicion de las Rutas de la API ---
-api.add_resource(TaskList, '/tasks')
-api.add_resource(Task, '/tasks/<int:task_id>')
+api.add_resource(TaskList, '/api/tasks')
+api.add_resource(Task, '/api/tasks/<int:task_id>')
 
 if __name__ == '__main__':
     app.run(debug=True)
